@@ -46,7 +46,7 @@ public class VotingMachine {
 
     public void printBallot() {
         System.out.println("The candidates are ");
-        for (String s : ballot) {
+        for (String s : votingInformation.getBallot()) {
             System.out.println(s);
         }
     }

@@ -2,8 +2,8 @@ import java.util.*;
 
 
 class ElectionData {
-  LinkedList<String> ballot = new LinkedList<String>();
-  Hashtable<Integer, LinkedList<String>> hashVotes;
+  private LinkedList<String> ballot = new LinkedList<String>();
+  private Hashtable<Integer, LinkedList<String>> hashVotes;
 
 
 
@@ -31,14 +31,6 @@ class ElectionData {
     }
   }
 
-  public int countVotes(String forcand) {
-    int numvotes = 0;
-    for (String s : votes) {
-      if (s.equals(forcand))
-        numvotes = numvotes+1;
-    }
-    return numvotes;
-  }
 
   /**
    * stores votes in hash map
@@ -182,6 +174,9 @@ class ElectionData {
     return this.ballot.get(indexOfMax);
   }
 
+  public LinkedList<String> getBallot() {
+    return ballot;
+  }
 }
 
 
