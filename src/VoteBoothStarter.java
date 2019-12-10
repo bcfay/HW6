@@ -3,30 +3,25 @@ import java.util.*;
 
 class ElectionData {
   LinkedList<String> ballot = new LinkedList<String>();
-  LinkedList<String> votes = new LinkedList<String>();
-  Scanner keyboard = new Scanner(System.in);
   Hashtable<Integer, LinkedList<String>> hashVotes;
 
 
 
 
-  public ElectionData() {
-    this.ballot.add("Gompei");
-    this.ballot.add("Husky");
-  }
 
-  public ElectionData(LinkedList<String> ballot, LinkedList<String> votes, Scanner keyboard) {
+  public ElectionData(LinkedList<String> ballot) {
     this.ballot = ballot;
-    this.votes = votes;
-    this.keyboard = keyboard;
     this.hashVotes = new Hashtable<Integer, LinkedList<String>>();
   }
 
-  public ElectionData(LinkedList<String> ballot, LinkedList<String> votes, Scanner keyboard, Hashtable<Integer, LinkedList<String>> hashVotes) {
+  public ElectionData(LinkedList<String> ballot, Hashtable<Integer, LinkedList<String>> hashVotes) {
     this.ballot = ballot;
-//    this.votes = votes;
-    this.keyboard = keyboard;
     this.hashVotes = hashVotes;
+  }
+
+  public ElectionData() {
+    LinkedList<String> ballot = new LinkedList<String>();
+    Hashtable<Integer, LinkedList<String>> hashVotes;
   }
 
   public void printBallot() {
@@ -34,14 +29,6 @@ class ElectionData {
     for (String s : ballot) {
       System.out.println(s);
     }
-  }
-
-  public void screen() {
-    this.printBallot();
-    System.out.println("Who do you want to vote for?");
-    String candidate = keyboard.next();
-    votes.add(candidate);
-    System.out.println("You voted for " + candidate);
   }
 
   public int countVotes(String forcand) {
