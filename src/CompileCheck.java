@@ -17,6 +17,7 @@ class CompileCheck {
         String winner1 = ED.findWinnerMostFirstVotes();
         String winner2 = ED.findWinnerMostPoints();
 
+        System.out.println(winner1 + winner2);
         System.out.println ("Congratulations, your program compiled!");
     }
 }
