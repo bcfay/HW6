@@ -100,7 +100,10 @@ class ElectionData {
     }
     this.ballot.add(candidateName);
   }
-
+  /**
+   * Returns the canidate with 50% of the votes, or "Runoff requiered." if no such canidate exists
+   * @return the canidate with 50% of the votes, or "Runoff requiered."
+   */
   public String findWinnerMostFirstVotes(){
 
     //creates votesPerCandidate to store number of votes per candidate
@@ -130,7 +133,13 @@ class ElectionData {
     return "Runoff Required";
   }
 
-
+  /**
+   * finds and returns the canidate with the most points.
+   * 3 points awarded for 1st votes
+   * 2 points awarded for 2nd votes
+   * 1 points awarded for 3rd votes
+   * @return the canidate with the most points.
+   */
   public String findWinnerMostPoints(){
 
     //creates votesPerCandidate to store number of votes per candidate
