@@ -50,18 +50,33 @@ public class Examples {
     public void testMostFirstWinner1() {
         assertEquals("gompei", Setup1().findWinnerMostFirstVotes());
     }
-
+    @Test
+    public void testMostFirstWinner2() {
+        assertFalse("husky".equals(Setup1().findWinnerMostFirstVotes()));
+    }
+    @Test
+    public void testMostFirstWinner3() {
+        assertFalse("ziggy".equals(Setup1().findWinnerMostFirstVotes()));
+    }
 
     @Test
-    public void testMostPoints() {
+    public void testMostPoints1() {
         assertEquals("gompei", Setup1().findWinnerMostPoints());
+    }
+    @Test
+    public void testMostPoints2() {
+        assertFalse("husky".equals(Setup1().findWinnerMostPoints()));
+    }
+    @Test
+    public void testMostPoints3() {
+        assertFalse("ziggy".equals(Setup1().findWinnerMostPoints()));
     }
 
     /**
      * Extra Tests for findWinnerMostPoints
      */
     @Test
-    public void test1() {
+    public void Generaltest1() {
         Hashtable<Integer, LinkedList<String>> hashVotes;
         ElectionData ED = new ElectionData();
 
@@ -89,7 +104,7 @@ public class Examples {
     }
 
     @Test
-    public void test2() {
+    public void Generaltest2() {
         Hashtable<Integer, LinkedList<String>> hashVotes;
         ElectionData ED = new ElectionData();
 
@@ -120,7 +135,7 @@ public class Examples {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test(expected = UnknownCandidateException.class)
-    public void test3() throws DuplicateVotesException, UnknownCandidateException {
+    public void UnknownCandtest1() throws DuplicateVotesException, UnknownCandidateException {
         Hashtable<Integer, LinkedList<String>> hashVotes;
         ElectionData A = new ElectionData();
 
@@ -138,7 +153,7 @@ public class Examples {
     }
 
     @Test(expected = UnknownCandidateException.class)
-    public void test4() throws DuplicateVotesException, UnknownCandidateException {
+    public void UnknownCandtest2() throws DuplicateVotesException, UnknownCandidateException {
         Hashtable<Integer, LinkedList<String>> hashVotes;
         ElectionData ED = new ElectionData();
 
@@ -164,7 +179,7 @@ public class Examples {
      * @throws DuplicateVotesException
      */
     @Test(expected = DuplicateVotesException.class)
-    public void test5() throws DuplicateVotesException, UnknownCandidateException {
+    public void DuplicateVoteTest1() throws DuplicateVotesException, UnknownCandidateException {
         Hashtable<Integer, LinkedList<String>> hashVotes;
         ElectionData ED = new ElectionData();
 
@@ -184,7 +199,7 @@ public class Examples {
 
 
     @Test(expected = DuplicateVotesException.class)
-    public void test6() throws UnknownCandidateException, DuplicateVotesException {
+    public void DuplicateVoteTest2() throws UnknownCandidateException, DuplicateVotesException {
         Hashtable<Integer, LinkedList<String>> hashVotes;
         ElectionData ED = new ElectionData();
 
@@ -206,7 +221,7 @@ public class Examples {
     }
 
     @Test(expected = DuplicateVotesException.class)
-    public void test7() throws UnknownCandidateException, DuplicateVotesException {
+    public void DuplicateVoteTest3() throws UnknownCandidateException, DuplicateVotesException {
         Hashtable<Integer, LinkedList<String>> hashVotes;
         ElectionData ED = new ElectionData();
 
@@ -232,7 +247,7 @@ public class Examples {
      * @throws CandidateExistsException
      */
     @Test(expected = CandidateExistsException.class)
-    public void test8() throws CandidateExistsException {
+    public void CandExistsTest1() throws CandidateExistsException {
         Hashtable<Integer, LinkedList<String>> hashVotes;
         ElectionData ED = new ElectionData();
 
@@ -257,7 +272,7 @@ public class Examples {
 
     }
     @Test(expected = CandidateExistsException.class)
-    public void test9() throws CandidateExistsException {
+    public void CandExistsTest2() throws CandidateExistsException {
         Hashtable<Integer, LinkedList<String>> hashVotes;
         ElectionData ED = new ElectionData();
 
