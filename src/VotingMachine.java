@@ -4,12 +4,24 @@ public class VotingMachine {
     private ElectionData votingInformation;
     private Scanner keyboard ;
 
+
     public VotingMachine() {
         this.votingInformation = new ElectionData();
         this.keyboard = new Scanner(System.in);
     }
 
-
+    /**
+     * creates a user interface for the voting machine
+     * gives options for casting votes; adding candidates, and counting votes
+     * this method also keeps into account all the possible outputs for each input
+     * which includes exceptions, winners, etc.
+     *
+     * When an exception is thrown, it will automatically try to correct it by prompting the user to input
+     * a new item corresponding to what threw the error, for example if the exception was a double candidate
+     * it will prompt for a new, third user
+     *
+     * This method uses a state machine to figure out where it is in the program, and to operate correctly
+     */
     public void screen(){
         String state = "Start Menu";
         boolean done = false;
@@ -139,9 +151,18 @@ public class VotingMachine {
         }
     }
 
+    /**
+     * This allows for the voting machine to take in an input of a new candidate as a "write in"
+     * @param getaName
+     * @throws CandidateExistsException
+     */
     private void addWriteIn(String getaName) throws CandidateExistsException {
         votingInformation.addCandidate(getaName);
     }
+
+    /**
+     * This prints out a list of all the candidates on the ballot for the current election
+     */
 
     public void printBallot() {
         System.out.println("The candidates are ");
