@@ -2,7 +2,12 @@ import java.util.Scanner;
 
 public class VotingMachine {
     ElectionData votingInformation;
-    Scanner keyboard = new Scanner(System.in);
+    Scanner keyboard ;
+
+    public VotingMachine() {
+        this.votingInformation = new ElectionData();
+        this.keyboard = new Scanner(System.in);
+    }
 
 
     public void screen(){
