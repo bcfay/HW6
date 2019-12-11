@@ -98,16 +98,7 @@ class ElectionData {
     if(ballot.contains(candidateName)){
       throw new CandidateExistsException(candidateName);
     }
-
-
     this.ballot.add(candidateName);
-
-      /*
-      Throw CandidateExistsException if candidate already on ballot
-          constructor takes the name as its only argument
-      Setup hashmap to know about new candidate here
-
-       */
   }
 
   public String findWinnerMostFirstVotes(){
