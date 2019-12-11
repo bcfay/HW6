@@ -62,7 +62,7 @@ public class VotingMachine {
 
             }
 
-            while (state=="Cast Votes") {
+            while (state.equals("Cast Votes")) {
                 boolean doneHere = true;
                 System.out.println("Who do you want to vote for first?");
                 String candidate1 = keyboard.next();
@@ -100,7 +100,7 @@ public class VotingMachine {
             }
 
 
-            while(state=="Count votes") {
+            while(state.equals("Count votes")) {
                 boolean added = true;
                 System.out.println("Q. go back");
                 System.out.println("How do you want to count the votes");
@@ -111,12 +111,17 @@ public class VotingMachine {
 
                 String input = keyboard.next();
                 String output = "only available to view to those who press 1-2";
-                if(input.equals("1")){
-                   output = votingInformation.findWinnerMostFirstVotes();
-                }else if(input.equals("2")){
-                    output = votingInformation.findWinnerMostFirstVotes();
-                }else if(input.equals("q") || input.equals("Q")){
-                    state = "Start Menu";
+                switch (input) {
+                    case "1":
+                        output = votingInformation.findWinnerMostFirstVotes();
+                        break;
+                    case "2":
+                        output = votingInformation.findWinnerMostPoints();
+                        break;
+                    case "q":
+                    case "Q":
+                        state = "Start Menu";
+                        break;
                 }
 
 
