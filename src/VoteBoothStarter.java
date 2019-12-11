@@ -21,7 +21,14 @@ class ElectionData {
 
   public ElectionData() {
     LinkedList<String> ballot = new LinkedList<String>();
-    Hashtable<Integer, LinkedList<String>> hashVotes;
+    Hashtable<Integer, LinkedList<String>> hashVotes = new Hashtable<Integer, LinkedList<String>>();
+    LinkedList<String> onesList = new LinkedList<String>();
+    hashVotes.put(1,onesList);
+    hashVotes.put(2,new LinkedList<String>());
+    hashVotes.put(3,new LinkedList<String>());
+
+
+
   }
 
   public void printBallot() {
@@ -56,10 +63,16 @@ class ElectionData {
       throw new DuplicateVotesException(candidate3);
     }
 
+    if(hashVotes == null){
+      LinkedList<String> firstVotes = new LinkedList<String>();
+      firstVotes.add(candidate1);
+      hashVotes.put((Integer)1, firstVotes);
+    }else{
+      LinkedList<String> firstVotes = hashVotes.get(1);
+      firstVotes.add(candidate1);
+      hashVotes.put(1, firstVotes);
+    }
 
-    LinkedList<String> firstVotes = hashVotes.get(1);
-    firstVotes.add(candidate1);
-    hashVotes.put(1, firstVotes);
     LinkedList<String> secondVotes = hashVotes.get(2);
     secondVotes.add(candidate2);
     hashVotes.put(2, secondVotes);
