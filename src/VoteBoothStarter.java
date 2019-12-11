@@ -136,7 +136,7 @@ class ElectionData {
         return this.ballot.get(i);
       }
     }
-    return "Pee pee poo poo";
+    return "Runoff Required";
   }
 
 
