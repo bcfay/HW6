@@ -2,12 +2,27 @@ import java.util.*;
 
 
 class ElectionData {
+
+  //Fields
   private LinkedList<String> ballot = new LinkedList<String>();
   private Hashtable<Integer, LinkedList<String>> hashVotes;
 
 
+
+  /**
+   *Constructor that takes a linked list for a balot and a hashtable for hashVotes
+   * @param ballot
+   * @param hashVotes
+   */
+  public ElectionData(LinkedList<String> ballot, Hashtable<Integer, LinkedList<String>> hashVotes) {
+    this.ballot = ballot;
+    this.hashVotes = hashVotes;
+  }
+
+
+
     /**
-     *
+     *Constructor that takes a linked list for a balot
      * @param ballot
      */
   public ElectionData(LinkedList<String> ballot) {
@@ -15,18 +30,9 @@ class ElectionData {
     this.hashVotes = new Hashtable<Integer, LinkedList<String>>();
   }
 
-    /**
-     *
-     * @param ballot
-     * @param hashVotes
-     */
-  public ElectionData(LinkedList<String> ballot, Hashtable<Integer, LinkedList<String>> hashVotes) {
-    this.ballot = ballot;
-    this.hashVotes = hashVotes;
-  }
 
     /**
-     *
+     * Constructor that takes no parameters
      */
   public ElectionData() {
     LinkedList<String> ballot = new LinkedList<String>();
@@ -45,6 +51,7 @@ class ElectionData {
       System.out.println(s);
     }
   }
+
 
 
   /**
@@ -89,6 +96,8 @@ class ElectionData {
     hashVotes.put(3, thirdVotes);
   }
 
+
+
   /**
    *Setup hashmap to know about new candidate here
    * @param candidateName canidate hashmap is setup to know about
@@ -100,9 +109,12 @@ class ElectionData {
     }
     this.ballot.add(candidateName);
   }
+
+
+
   /**
-   * Returns the canidate with 50% of the votes, or "Runoff requiered." if no such canidate exists
-   * @return the canidate with 50% of the votes, or "Runoff requiered."
+   * Returns the candidate with 50% of the votes, or "Runoff requiered." if no such candidate exists.
+   * @return the candidate with 50% of the votes, or "Runoff requiered."
    */
   public String findWinnerMostFirstVotes(){
 
@@ -132,6 +144,8 @@ class ElectionData {
     }
     return "Runoff Required";
   }
+
+
 
   /**
    * finds and returns the canidate with the most points.
