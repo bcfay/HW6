@@ -1,8 +1,8 @@
 import java.util.Scanner;
 
 public class VotingMachine {
-    ElectionData votingInformation;
-    Scanner keyboard ;
+    private ElectionData votingInformation;
+    private Scanner keyboard ;
 
     public VotingMachine() {
         this.votingInformation = new ElectionData();
@@ -38,7 +38,7 @@ public class VotingMachine {
 
             }
 
-            while(state=="Add candidate"){
+            while(state.equals("Add candidate")){
                 boolean added = true;
                 System.out.println("Q. go back");
                 System.out.println("Who do you want to add to the ballot?");
@@ -124,11 +124,11 @@ public class VotingMachine {
                 }
 
 
-                System.out.println("");
+                System.out.println();
                 System.out.println("The winner is: " + output);
                 if(output.equals("Runoff Required")){
                     System.out.println("...our favorite candidate.");
-                    System.out.println("");
+                    System.out.println();
                     System.out.println("You need to cast more votes.");
                     state = "Cast Votes";
 

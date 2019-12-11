@@ -11,8 +11,8 @@ class ElectionData {
 
   /**
    *Constructor that takes a linked list for a balot and a hashtable for hashVotes
-   * @param ballot
-   * @param hashVotes
+   * @param ballot this.ballot
+   * @param hashVotes this.hashVotes
    */
   public ElectionData(LinkedList<String> ballot, Hashtable<Integer, LinkedList<String>> hashVotes) {
     this.ballot = ballot;
@@ -116,7 +116,7 @@ class ElectionData {
   public String findWinnerMostFirstVotes(){
 
     //creates votesPerCandidate to store number of votes per candidate
-    int votesPerCandidate[];
+    int[] votesPerCandidate;
     votesPerCandidate = new int[this.ballot.size()];
 
     //iterates though first votes
@@ -154,44 +154,24 @@ class ElectionData {
   public String findWinnerMostPoints(){
 
     //creates votesPerCandidate to store number of votes per candidate
-    int votesPerCandidate[];
+    int[] votesPerCandidate;
     votesPerCandidate = new int[this.ballot.size()];
 
     //iterates though first votes
-    for(String firstVote: hashVotes.get(1)){
-      //compares to ballot to add vote to correct index
-      for(int i = 0; i < this.ballot.size(); i++){
-        if(firstVote.equals(this.ballot.get(i))){
-          //increments position in votesPerCandidate corresponding to matching candidate by 3
-          int oldVotesNum = votesPerCandidate[i];
-          votesPerCandidate[i] = (oldVotesNum + 3);
+    for(int j = 1; j<4;j++) {
+      for (String firstVote : hashVotes.get(j)) {
+        //compares to ballot to add vote to correct index
+        for (int i = 0; i < this.ballot.size(); i++) {
+          if (firstVote.equals(this.ballot.get(i))) {
+            //increments position in votesPerCandidate corresponding to matching candidate by 3
+            int oldVotesNum = votesPerCandidate[i];
+            votesPerCandidate[i] = (oldVotesNum + 3);
+          }
         }
       }
     }
 
-    //iterates though second votes
-    for(String secondVote: hashVotes.get(2)){
-      //compares to ballot to add vote to correct index
-      for(int i = 0; i < this.ballot.size(); i++){
-        if(secondVote.equals(this.ballot.get(i))){
-          //increments position in votesPerCandidate corresponding to matching candidate by 2
-          int oldVotesNum = votesPerCandidate[i];
-          votesPerCandidate[i] = (oldVotesNum + 2);
-        }
-      }
-    }
 
-    //iterates though third votes
-    for(String thirdVote: hashVotes.get(3)){
-      //compares to ballot to add vote to correct index
-      for(int i = 0; i < this.ballot.size(); i++){
-        if(thirdVote.equals(this.ballot.get(i))){
-          //increments position in votesPerCandidate corresponding to matching candidate by 1
-          int oldVotesNum = votesPerCandidate[i];
-          votesPerCandidate[i] = (oldVotesNum + 1);
-        }
-      }
-    }
 
 
     //find index of most votes

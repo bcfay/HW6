@@ -4,7 +4,7 @@ import org.junit.rules.ExpectedException;
 
 import java.util.Hashtable;
 import java.util.LinkedList;
-import java.io.*;
+
 import static org.junit.Assert.*;
 
 public class Examples {
