@@ -101,7 +101,6 @@ public class VotingMachine {
 
 
             while(state.equals("Count votes")) {
-                boolean added = true;
                 System.out.println("Q. go back");
                 System.out.println("How do you want to count the votes");
                 System.out.println("Q. go back");
