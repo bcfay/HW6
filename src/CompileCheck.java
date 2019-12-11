@@ -22,5 +22,8 @@ class CompileCheck {
 
         System.out.println(winner1 +"   winner2: "+ winner2);
         System.out.println ("Congratulations, your program compiled!");
+
+        VotingMachine vm = new VotingMachine();
+        vm.screen();
     }
 }
