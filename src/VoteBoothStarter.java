@@ -6,30 +6,39 @@ class ElectionData {
   private Hashtable<Integer, LinkedList<String>> hashVotes;
 
 
-
-
-
+    /**
+     *
+     * @param ballot
+     */
   public ElectionData(LinkedList<String> ballot) {
     this.ballot = ballot;
     this.hashVotes = new Hashtable<Integer, LinkedList<String>>();
   }
 
+    /**
+     *
+     * @param ballot
+     * @param hashVotes
+     */
   public ElectionData(LinkedList<String> ballot, Hashtable<Integer, LinkedList<String>> hashVotes) {
     this.ballot = ballot;
     this.hashVotes = hashVotes;
   }
 
+    /**
+     *
+     */
   public ElectionData() {
     LinkedList<String> ballot = new LinkedList<String>();
     this.hashVotes = new Hashtable<Integer, LinkedList<String>>();
     hashVotes.put(1,new LinkedList<String>());
     hashVotes.put(2,new LinkedList<String>());
     hashVotes.put(3,new LinkedList<String>());
-
-
-
   }
 
+    /**
+     *
+     */
   public void printBallot() {
     System.out.println("The candidates are ");
     for (String s : ballot) {
@@ -40,9 +49,9 @@ class ElectionData {
 
   /**
    * stores votes in hash map
-   * @param candidate1
-   * @param candidate2
-   * @param candidate3
+   * @param candidate1 The name of the candidate being voted for first
+   * @param candidate2 The name of the candidate being voted for first
+   * @param candidate3 The name of the candidate being voted for first
    */
   public void processVote(String candidate1,String candidate2,String candidate3) throws UnknownCandidateException, DuplicateVotesException {
     //UnknownCandidateException checking
@@ -127,7 +136,7 @@ class ElectionData {
         return this.ballot.get(i);
       }
     }
-    return "Runoff required";
+    return "Pee pee poo poo";
   }
 
 
