@@ -51,6 +51,7 @@ public class Examples {
         assertEquals("gompei", Setup1().findWinnerMostFirstVotes());
     }
 
+
     @Test
     public void testMostPoints() {
         assertEquals("gompei", Setup1().findWinnerMostPoints());
@@ -113,12 +114,13 @@ public class Examples {
 
 
     /**
-     * Testing Exceptions
+     * Testing Unknown Candidate Exceptions
      */
     @Rule
     public ExpectedException thrown = ExpectedException.none();
-    @Test
-    public void test3 ()throws UnknownCandidateException {
+
+    @Test(expected = UnknownCandidateException.class)
+    public void test3() throws DuplicateVotesException, UnknownCandidateException {
         Hashtable<Integer, LinkedList<String>> hashVotes;
         ElectionData A = new ElectionData();
 
@@ -128,22 +130,15 @@ public class Examples {
             A.addCandidate("Trump");
         } catch (CandidateExistsException e) {
         }
-        try {
-            A.processVote("Gompei","Beef", "Steve");
-        } catch (UnknownCandidateException e) {
-        } catch (DuplicateVotesException e) {
-        }
-        thrown.expect(UnknownCandidateException.class);
-
-
+        A.processVote("Husky", "Beef", "Steve");
 
         String winner1 = A.findWinnerMostFirstVotes();
         String winner2 = A.findWinnerMostPoints();
 
     }
 
-    @Test
-    public void test4() {
+    @Test(expected = UnknownCandidateException.class)
+    public void test4() throws DuplicateVotesException, UnknownCandidateException {
         Hashtable<Integer, LinkedList<String>> hashVotes;
         ElectionData ED = new ElectionData();
 
@@ -153,11 +148,9 @@ public class Examples {
             ED.addCandidate("Trump");
         } catch (CandidateExistsException e) {
         }
-        try {
-            ED.processVote("Husky","Beef", "Steve");
-        } catch (UnknownCandidateException e) {
-        } catch (DuplicateVotesException e) {
-        }
+
+        ED.processVote("Bernie", "Beef", "Steve");
+
         thrown.expect(UnknownCandidateException.class);
 
         String winner1 = ED.findWinnerMostFirstVotes();
@@ -165,8 +158,13 @@ public class Examples {
 
 
     }
-    @Test
-    public void test5() {
+    /**
+     * Testing the Duplicate Votes Exception
+     * @throws UnknownCandidateException
+     * @throws DuplicateVotesException
+     */
+    @Test(expected = DuplicateVotesException.class)
+    public void test5() throws DuplicateVotesException, UnknownCandidateException {
         Hashtable<Integer, LinkedList<String>> hashVotes;
         ElectionData ED = new ElectionData();
 
@@ -176,11 +174,29 @@ public class Examples {
             ED.addCandidate("Trump");
         } catch (CandidateExistsException e) {
         }
+
+        ED.processVote("Beef", "Beef", "Steve");
+        String winner1 = ED.findWinnerMostFirstVotes();
+        String winner2 = ED.findWinnerMostPoints();
+
+
+    }
+
+
+    @Test(expected = DuplicateVotesException.class)
+    public void test6() throws UnknownCandidateException, DuplicateVotesException {
+        Hashtable<Integer, LinkedList<String>> hashVotes;
+        ElectionData ED = new ElectionData();
+
         try {
-            ED.processVote("Beef","Beef", "Steve");
-        } catch (UnknownCandidateException e) {
-        } catch (DuplicateVotesException e) {
+            ED.addCandidate("Beef");
+            ED.addCandidate("Steve");
+            ED.addCandidate("Trump");
+        } catch (CandidateExistsException e) {
         }
+
+        ED.processVote("Beef", "Steve", "Steve");
+
         thrown.expect(DuplicateVotesException.class);
 
         String winner1 = ED.findWinnerMostFirstVotes();
@@ -188,8 +204,9 @@ public class Examples {
 
 
     }
-    @Test
-    public void test6() {
+
+    @Test(expected = DuplicateVotesException.class)
+    public void test7() throws UnknownCandidateException, DuplicateVotesException {
         Hashtable<Integer, LinkedList<String>> hashVotes;
         ElectionData ED = new ElectionData();
 
@@ -199,15 +216,68 @@ public class Examples {
             ED.addCandidate("Trump");
         } catch (CandidateExistsException e) {
         }
-        try {
-            ED.processVote("Beef","Steve", "Steve");
-        } catch (UnknownCandidateException e) {
-        } catch (DuplicateVotesException e) {
-        }
+
+        ED.processVote("Steve", "Steve", "Steve");
+
         thrown.expect(DuplicateVotesException.class);
 
         String winner1 = ED.findWinnerMostFirstVotes();
         String winner2 = ED.findWinnerMostPoints();
+
+
+    }
+
+    /**
+     * Testing the Candidate Exists Exception
+     * @throws CandidateExistsException
+     */
+    @Test(expected = CandidateExistsException.class)
+    public void test8() throws CandidateExistsException {
+        Hashtable<Integer, LinkedList<String>> hashVotes;
+        ElectionData ED = new ElectionData();
+
+
+            ED.addCandidate("Beef");
+            ED.addCandidate("Beef");
+            ED.addCandidate("Trump");
+
+
+            try {
+                ED.processVote("Beef", "Beef", "Steve");
+            } catch (UnknownCandidateException e) {
+            } catch (DuplicateVotesException e) {
+            }
+
+            thrown.expect(DuplicateVotesException.class);
+
+            String winner1 = ED.findWinnerMostFirstVotes();
+            String winner2 = ED.findWinnerMostPoints();
+
+
+
+    }
+    @Test(expected = CandidateExistsException.class)
+    public void test9() throws CandidateExistsException {
+        Hashtable<Integer, LinkedList<String>> hashVotes;
+        ElectionData ED = new ElectionData();
+
+
+        ED.addCandidate("Beef");
+        ED.addCandidate("Beef");
+        ED.addCandidate("Beef");
+
+
+        try {
+            ED.processVote("Beef", "Beef", "Steve");
+        } catch (UnknownCandidateException e) {
+        } catch (DuplicateVotesException e) {
+        }
+
+        thrown.expect(DuplicateVotesException.class);
+
+        String winner1 = ED.findWinnerMostFirstVotes();
+        String winner2 = ED.findWinnerMostPoints();
+
 
 
     }
