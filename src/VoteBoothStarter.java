@@ -53,20 +53,22 @@ class ElectionData {
   }
 
 
-
   /**
-   * stores votes in hash map
-   * @param candidate1 The name of the candidate being voted for first
-   * @param candidate2 The name of the candidate being voted for first
-   * @param candidate3 The name of the candidate being voted for first
+   *Takes the strings for the names of the candidates being voted for and adds the votes to voteHash
+   * @param candidate1 the candidate that receives the first vote
+   * @param candidate2 the candidate that receives the second vote
+   * @param candidate3 the candidate that receives the third vote
+   * @throws UnknownCandidateException when a canidate provided is not present on the ballot
+   * @throws DuplicateVotesException when two or more of the votes are identical Strings
    */
   public void processVote(String candidate1,String candidate2,String candidate3) throws UnknownCandidateException, DuplicateVotesException {
+
     //UnknownCandidateException checking
     if(!this.ballot.contains(candidate1)){
       throw new UnknownCandidateException(candidate1);
-    }else if(!this.ballot.contains(candidate1)){
+    }else if(!this.ballot.contains(candidate2)){
       throw new UnknownCandidateException(candidate2);
-    }else if(!this.ballot.contains(candidate1)){
+    }else if(!this.ballot.contains(candidate3)){
       throw new UnknownCandidateException(candidate3);
     }
     //DuplicateVotesException checking
@@ -78,15 +80,10 @@ class ElectionData {
       throw new DuplicateVotesException(candidate3);
     }
 
-    if(hashVotes == null){
-      LinkedList<String> firstVotes = new LinkedList<String>();
-      firstVotes.add(candidate1);
-      hashVotes.put((Integer)1, firstVotes);
-    }else{
-      LinkedList<String> firstVotes = hashVotes.get(1);
-      firstVotes.add(candidate1);
-      hashVotes.put(1, firstVotes);
-    }
+
+    LinkedList<String> firstVotes = hashVotes.get(1);
+    firstVotes.add(candidate1);
+    hashVotes.put(1, firstVotes);
 
     LinkedList<String> secondVotes = hashVotes.get(2);
     secondVotes.add(candidate2);
@@ -209,6 +206,10 @@ class ElectionData {
     return this.ballot.get(indexOfMax);
   }
 
+  /**
+   *
+   * @return
+   */
   public LinkedList<String> getBallot() {
     return ballot;
   }
