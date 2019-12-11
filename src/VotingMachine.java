@@ -12,11 +12,13 @@ public class VotingMachine {
 
     public void screen(){
         String state = "Start Menu";
-        while(true) {
+        boolean done = false;
+        while(!state.equals("Done")) {
 
-            while(state=="Start Menu") {
+            while(state.equals("Start Menu")) {
                 this.printBallot();
                 System.out.println("What would you like to do? (Enter 1-3)");
+                System.out.println("Q. Quit");
                 System.out.println("1. Cast Votes.");
                 System.out.println("2. Add candidate.");
                 System.out.println("3. Count votes.");
@@ -24,24 +26,44 @@ public class VotingMachine {
 
                 String input = keyboard.next();
 
-                if(input=="1"){
+                if(input.equals("1")){
                     state = "Cast Votes";
-                }else if(input=="2"){
+                }else if(input.equals("2")){
                     state = "Add candidate";
-                }else if(input=="3"){
+                }else if(input.equals("3")){
                     state = "Count votes";
-                }else if(input=="1"){
-
+                }else if(input.equals("q") || input.equals("Q")){
+                    state = "Done";
                 }
+
             }
+
             while(state=="Add candidate"){
+                boolean added = true;
+                System.out.println("Q. go back");
                 System.out.println("Who do you want to add to the ballot?");
                 System.out.print(":");
 
                 String candidate = keyboard.next();
+
+                if (candidate.equals("q") || candidate.equals("Q")) {
+                    state = "Start Menu";
+                }
+
+                try {
+                    addWriteIn(candidate);
+                } catch (CandidateExistsException f) {
+                    added=false;
+                    System.out.print("The candidate already exists.");
+                }
+                if(added){
+                    state= "Start Menu";
+                }
+
             }
 
             while (state=="Cast Votes") {
+                boolean doneHere = true;
                 System.out.println("Who do you want to vote for first?");
                 String candidate1 = keyboard.next();
                 System.out.println("Who do you want to vote for second?");
@@ -54,6 +76,7 @@ public class VotingMachine {
                 } catch (DuplicateVotesException e) {
                     System.out.print("You have voted for " + e.getName() + " twice.");
                     System.out.print("You cannot vote for the same canidate twice");
+                    doneHere = false;
 
 
                 } catch (UnknownCandidateException e) {
@@ -65,9 +88,52 @@ public class VotingMachine {
                             addWriteIn(e.getaName());
                         } catch (CandidateExistsException f) {
                             System.out.print("The candidate already exists.");
+                            doneHere = false;
                         }
                     }
                 }
+
+                if(doneHere){
+                    state = "Start Menu";
+                }
+
+            }
+
+
+            while(state=="Count votes") {
+                boolean added = true;
+                System.out.println("Q. go back");
+                System.out.println("How do you want to count the votes");
+                System.out.println("Q. go back");
+                System.out.println("1. Most first votes.");
+                System.out.println("2. Most points.");
+                System.out.print(":");
+
+                String input = keyboard.next();
+                String output = "only available to view to those who press 1-2";
+                if(input.equals("1")){
+                   output = votingInformation.findWinnerMostFirstVotes();
+                }else if(input.equals("2")){
+                    output = votingInformation.findWinnerMostFirstVotes();
+                }else if(input.equals("q") || input.equals("Q")){
+                    state = "Start Menu";
+                }
+
+
+                System.out.println("");
+                System.out.println("The winner is: " + output);
+                if(output.equals("Runoff Required")){
+                    System.out.println("...our favorite candidate.");
+                    System.out.println("");
+                    System.out.println("You need to cast more votes.");
+                    state = "Cast Votes";
+
+                }
+
+
+
+
+
             }
 
         }
