@@ -21,9 +21,8 @@ class ElectionData {
 
   public ElectionData() {
     LinkedList<String> ballot = new LinkedList<String>();
-    Hashtable<Integer, LinkedList<String>> hashVotes = new Hashtable<Integer, LinkedList<String>>();
-    LinkedList<String> onesList = new LinkedList<String>();
-    hashVotes.put(1,onesList);
+    this.hashVotes = new Hashtable<Integer, LinkedList<String>>();
+    hashVotes.put(1,new LinkedList<String>());
     hashVotes.put(2,new LinkedList<String>());
     hashVotes.put(3,new LinkedList<String>());
 
