@@ -3,7 +3,7 @@ import java.util.*;
 
 class ElectionData {
 
-  //Fields
+  //Fields\\\\\\\\\\\\\\
   private LinkedList<String> ballot = new LinkedList<String>();
   private Hashtable<Integer, LinkedList<String>> hashVotes;
 
@@ -129,7 +129,7 @@ class ElectionData {
         if(firstVote.equals(this.ballot.get(i))){
           //increments position in votesPerCandidate corresponding to matching candidate by 3
           int oldVotesNum = votesPerCandidate[i];
-          votesPerCandidate[i] = oldVotesNum++;
+          votesPerCandidate[i] = (oldVotesNum +1);
         }
       }
     }
@@ -167,7 +167,7 @@ class ElectionData {
         if(firstVote.equals(this.ballot.get(i))){
           //increments position in votesPerCandidate corresponding to matching candidate by 3
           int oldVotesNum = votesPerCandidate[i];
-          votesPerCandidate[i] = oldVotesNum += 3;
+          votesPerCandidate[i] = (oldVotesNum + 3);
         }
       }
     }
@@ -179,7 +179,7 @@ class ElectionData {
         if(secondVote.equals(this.ballot.get(i))){
           //increments position in votesPerCandidate corresponding to matching candidate by 2
           int oldVotesNum = votesPerCandidate[i];
-          votesPerCandidate[i] = oldVotesNum += 2;
+          votesPerCandidate[i] = (oldVotesNum + 2);
         }
       }
     }
@@ -191,7 +191,7 @@ class ElectionData {
         if(thirdVote.equals(this.ballot.get(i))){
           //increments position in votesPerCandidate corresponding to matching candidate by 1
           int oldVotesNum = votesPerCandidate[i];
-          votesPerCandidate[i] = oldVotesNum += 1;
+          votesPerCandidate[i] = (oldVotesNum + 1);
         }
       }
     }

@@ -65,10 +65,10 @@ public class Examples {
             } catch (DuplicateVotesException e) {
             }
 
-            String winner1 = ED.findWinnerMostFirstVotes();
-            String winner2 = ED.findWinnerMostPoints();
+        String winner1 = ED.findWinnerMostFirstVotes();
+        String winner2 = ED.findWinnerMostPoints();
 
-            assertEquals(winner1, "Runoff Required");
+        assertEquals("Beef", winner1 );
         }
     @Test
     public void test2() {
@@ -90,7 +90,7 @@ public class Examples {
         String winner1 = ED.findWinnerMostFirstVotes();
         String winner2 = ED.findWinnerMostPoints();
 
-        assertEquals(winner1, "Runoff Required");
+        assertEquals("Beef", winner1 );
     }
     }
 
