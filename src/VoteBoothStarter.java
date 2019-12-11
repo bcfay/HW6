@@ -21,19 +21,19 @@ class ElectionData {
 
 
 
-    /**
-     *Constructor that takes a linked list for a balot
-     * @param ballot
-     */
+  /**
+   *Constructor that takes a linked list for a balot
+   * @param ballot
+   */
   public ElectionData(LinkedList<String> ballot) {
     this.ballot = ballot;
     this.hashVotes = new Hashtable<Integer, LinkedList<String>>();
   }
 
 
-    /**
-     * Constructor that takes no parameters
-     */
+  /**
+   * Constructor that takes no parameters
+   */
   public ElectionData() {
     LinkedList<String> ballot = new LinkedList<String>();
     this.hashVotes = new Hashtable<Integer, LinkedList<String>>();
@@ -42,9 +42,9 @@ class ElectionData {
     hashVotes.put(3,new LinkedList<String>());
   }
 
-    /**
-     *
-     */
+  /**
+   *
+   */
   public void printBallot() {
     System.out.println("The candidates are ");
     for (String s : ballot) {
@@ -213,6 +213,4 @@ class ElectionData {
     return ballot;
   }
 }
-
-
 

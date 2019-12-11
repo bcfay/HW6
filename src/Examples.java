@@ -1,4 +1,6 @@
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import java.util.Hashtable;
 import java.util.LinkedList;
@@ -110,32 +112,36 @@ public class Examples {
     }
 
 
-/**
- * Testing Exceptions
- */
-@Test
-public void test3() {
-    Hashtable<Integer, LinkedList<String>> hashVotes;
-    ElectionData ED = new ElectionData();
+    /**
+     * Testing Exceptions
+     */
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
+    @Test
+    public void test3 ()throws UnknownCandidateException {
+        Hashtable<Integer, LinkedList<String>> hashVotes;
+        ElectionData A = new ElectionData();
 
-    try {
-        ED.addCandidate("Beef");
-        ED.addCandidate("Steve");
-        ED.addCandidate("Trump");
-    } catch (CandidateExistsException e) {
+        try {
+            A.addCandidate("Beef");
+            A.addCandidate("Steve");
+            A.addCandidate("Trump");
+        } catch (CandidateExistsException e) {
+        }
+        try {
+            A.processVote("Gompei","Beef", "Steve");
+        } catch (UnknownCandidateException e) {
+        } catch (DuplicateVotesException e) {
+        }
+        thrown.expect(UnknownCandidateException.class);
+
+
+
+        String winner1 = A.findWinnerMostFirstVotes();
+        String winner2 = A.findWinnerMostPoints();
+
     }
-    try {
-        ED.processVote("Gompei","Beef", "Steve");
-    } catch (UnknownCandidateException e) {
-    } catch (DuplicateVotesException e) {
-    }
 
-
-    String winner1 = ED.findWinnerMostFirstVotes();
-    String winner2 = ED.findWinnerMostPoints();
-
-    assertEquals("Candidate is not on ballot", winner1 );
-}
     @Test
     public void test4() {
         Hashtable<Integer, LinkedList<String>> hashVotes;
@@ -152,12 +158,12 @@ public void test3() {
         } catch (UnknownCandidateException e) {
         } catch (DuplicateVotesException e) {
         }
-
+        thrown.expect(UnknownCandidateException.class);
 
         String winner1 = ED.findWinnerMostFirstVotes();
         String winner2 = ED.findWinnerMostPoints();
 
-        assertEquals("Candidate is not on ballot", winner1 );
+
     }
     @Test
     public void test5() {
@@ -175,12 +181,12 @@ public void test3() {
         } catch (UnknownCandidateException e) {
         } catch (DuplicateVotesException e) {
         }
-
+        thrown.expect(DuplicateVotesException.class);
 
         String winner1 = ED.findWinnerMostFirstVotes();
         String winner2 = ED.findWinnerMostPoints();
 
-        assertEquals("Candidate can not be voted for twice", winner1 );
+
     }
     @Test
     public void test6() {
@@ -198,11 +204,11 @@ public void test3() {
         } catch (UnknownCandidateException e) {
         } catch (DuplicateVotesException e) {
         }
-
+        thrown.expect(DuplicateVotesException.class);
 
         String winner1 = ED.findWinnerMostFirstVotes();
         String winner2 = ED.findWinnerMostPoints();
 
-//        assertEquals(, ED.processVote("Beef","Steve","Steve"));
+
     }
 }
