@@ -134,15 +134,9 @@ public class VotingMachine {
 
                 }
 
-
-
-
-
             }
 
         }
-
-
     }
 
     private void addWriteIn(String getaName) throws CandidateExistsException {

@@ -187,8 +187,8 @@ class ElectionData {
   }
 
   /**
-   *
-   * @return
+   *returns the ballot of current runners
+   * @return ballot
    */
   public LinkedList<String> getBallot() {
     return ballot;
